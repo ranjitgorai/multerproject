@@ -1,0 +1,44 @@
+<script type="text/javascript">
+
+
+$('#submit-btn').click(function(e){
+	e.preventDefault();
+
+     var uploadedFile = $("#fileInput")[0].files[0];
+
+  
+
+
+
+
+
+	var fd = new FormData();
+	fd.append("fileup", uploadedFile);
+	fd.append("textup", $("#textInput").val());
+	console.log(fd);
+   $.ajax({
+
+		url : '/multerproj',
+		type: 'post',
+		data : fd,
+		contentType : false,
+		processData : false,
+		success : function(result){          
+		    if(!result.error)
+		      {
+		          $('#demo').html(result.result);
+		         //window.location.href = "/quizeapp/quizepage/"+result;
+
+		      }
+		      else{
+		        alert("error.");
+		      }
+		      //window.location.reload();
+		 }
+	});   
+});
+
+
+
+
+</script>
